@@ -1,8 +1,20 @@
+﻿
+
+
+using Microsoft.EntityFrameworkCore;
+using QLBH_DT.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+/// Kết nối sql server
+builder.Services.AddDbContext<QuanLyBanHangContext>(options =>
+{
+	options.UseSqlServer(builder.Configuration.GetConnectionString("QLBH"));
+});
+///
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
